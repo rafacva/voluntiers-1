@@ -1,0 +1,39 @@
+{% extends 'global/base.html' %}
+
+{% block title %}Dashboard ({{ user }}) | {% endblock title %}
+
+{% block content %}
+  <div class="main-content center container">
+    <h2>Dashboard ({{ user }})</h2>
+
+    {% include 'profiles/partials/login_message.html' %}
+    {% include 'global/partials/messages.html' %}
+
+    <div class="profiles-dashboard-container">
+      <h3>Your tasks</h3>
+
+      <ul>
+        {% for task in tasks %}
+          <li>
+            <a href="{% url 'profiles:dashboard_task_edit' task.id %}">{{ task.title }}</a> -
+            <form 
+            class="inline-form form-delete" 
+            action="{% url 'profiles:dashboard_task_delete' %}"
+            method='POST'
+            >
+              {% csrf_token %}
+              <input type="hidden" name="id" value="{{ task.id }}">
+              <button class="plaintext-button" type="submit">❌</button>
+            </form>
+          </li>
+        {% empty %}
+          <li>
+            <p>You do not have tasks, please create one.</p>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+
+  {% endblock content %}
