@@ -32,6 +32,19 @@ git remote add origin ~/app_bare
 git add . && git commit -m 'Initial'
 cd ~
 
-# adiciona remoto
-git remote add app_bare voluntiers:~/app_bare
+# adiciona no dev local o bare remoto para o bare da vm
+git remote add app_bare voluntiers:~/app_bare ou git remote add app_bare <username@ipdavm>:~/app_bare 
 git push app_bare <branch>
+
+# pulla o bare para o repo na vm
+cd ~/app_repo
+git pull origin <branch>
+
+# criando o venv
+python3.9 -m venv venv
+. venv/bin/activate
+pip install -r requirements.txt
+pip install psycopg2
+pip install gunicorn
+
+ 
