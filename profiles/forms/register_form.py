@@ -7,6 +7,7 @@ from utils.django_forms import add_placeholder, strong_password
 class RegisterForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        add_placeholder(self.fields['user_type'], 'ONG or Voluntário')
         add_placeholder(self.fields['username'], 'Your username')
         add_placeholder(self.fields['email'], 'Your e-mail')
         add_placeholder(self.fields['first_name'], 'Ex.: John')
@@ -14,6 +15,15 @@ class RegisterForm(forms.ModelForm):
         add_placeholder(self.fields['password'], 'Type your password')
         add_placeholder(self.fields['password2'], 'Repeat your password')
 
+    user_type = forms.ChoiceField(
+    choices=[
+        ('ONG', 'ONG'),
+        ('Voluntier', 'Voluntier'),
+        
+    ],
+    error_messages={'required': 'Please select an option'},
+    label='User_type'
+    )
     username = forms.CharField(
         label='Username',
         help_text=(
@@ -64,6 +74,7 @@ class RegisterForm(forms.ModelForm):
     class Meta:
         model = User
         fields = [
+            'user_type',
             'first_name',
             'last_name',
             'username',
