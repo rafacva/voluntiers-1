@@ -4,7 +4,6 @@
       {% if user.is_authenticated %}
         <a href="{% url 'profiles:dashboard_vaga_new' %}">New vaga</a>
         <a href="{% url 'profiles:dashboard' %}">Dashboard</a>
-        <a href="{% url 'chat:home' %}">Chat</a>
       {% else %}
         <a href="{% url 'profiles:login' %}">Login</a>
         <a href="{% url 'profiles:register' %}">Register</a>
