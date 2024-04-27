@@ -2,17 +2,17 @@ from django.db.models import Q
 from django.http.response import Http404
 from django.views.generic import DetailView, ListView
 
-from vagas.models import Vaga
+from vagas.models import Task
 from utils.pagination import make_pagination
 
 PER_PAGE = 6
 
 
-class VagaListViewBase(ListView):
-    model = Vaga
-    context_object_name = 'vagas'
+class TaskListViewBase(ListView):
+    model = Task
+    context_object_name = 'tasks'
     ordering = ['-id']
-    template_name = 'vagas/pages/home.html'
+    template_name = 'tasks/pages/home.html'
 
     def get_queryset(self, *args, **kwargs):
         qs = super().get_queryset(*args, **kwargs)
@@ -25,27 +25,27 @@ class VagaListViewBase(ListView):
         ctx = super().get_context_data(*args, **kwargs)
         page_obj, pagination_range = make_pagination(
             self.request,
-            ctx.get('vagas'),
+            ctx.get('tasks'),
             PER_PAGE
         )
         ctx.update(
-            {'vagas': page_obj, 'pagination_range': pagination_range}
+            {'tasks': page_obj, 'pagination_range': pagination_range}
         )
         return ctx
 
 
-class VagaListViewHome(VagaListViewBase):
-    template_name = 'vagas/pages/home.html'
+class TaskListViewHome(TaskListViewBase):
+    template_name = 'tasks/pages/home.html'
 
 
-class VagaListViewCategory(VagaListViewBase):
-    template_name = 'vagas/pages/category.html'
+class TaskListViewCategory(TaskListViewBase):
+    template_name = 'tasks/pages/category.html'
 
     def get_context_data(self, *args, **kwargs):
         ctx = super().get_context_data(*args, **kwargs)
 
         ctx.update({
-            'title': f'{ctx.get("vagas")[0].category.name} - Category | '
+            'title': f'{ctx.get("tasks")[0].category.name} - Category | '
         })
 
         return ctx
@@ -62,8 +62,8 @@ class VagaListViewCategory(VagaListViewBase):
         return qs
 
 
-class VagaListViewSearch(VagaListViewBase):
-    template_name = 'vagas/pages/search.html'
+class TaskListViewSearch(TaskListViewBase):
+    template_name = 'tasks/pages/search.html'
 
     def get_queryset(self, *args, **kwargs):
         search_term = self.request.GET.get('q', '')
@@ -93,10 +93,10 @@ class VagaListViewSearch(VagaListViewBase):
         return ctx
 
 
-class VagaDetail(DetailView):
-    model = Vaga
-    context_object_name = 'vaga'
-    template_name = 'vagas/pages/vaga-view.html'
+class TaskDetail(DetailView):
+    model = Task
+    context_object_name = 'task'
+    template_name = 'tasks/pages/task-view.html'
 
     def get_queryset(self, *args, **kwargs):
         qs = super().get_queryset(*args, **kwargs)
