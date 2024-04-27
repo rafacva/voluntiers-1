@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import redirect, render
 from django.urls import reverse
-from vagas.models import Task
+from vagas.models import Vaga
 
 
 def register_view(request):
@@ -85,14 +85,14 @@ def logout_view(request):
 
 @login_required(login_url='profiles:login', redirect_field_name='next')
 def dashboard(request):
-    tasks = Task.objects.filter(
+    vagas = Vaga.objects.filter(
         is_published=False,
-        author=request.user
+        profile=request.user
     )
     return render(
         request,
         'profiles/pages/dashboard.html',
         context={
-            'tasks': tasks,
+            'vagas': vagas,
         }
     )

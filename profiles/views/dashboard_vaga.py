@@ -6,15 +6,15 @@ from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views import View
 
-from profiles.forms.task_form import ProfileTaskForm
-from vagas.models import Task
+from profiles.forms.vaga_form import ProfileVagaForm
+from vagas.models import Vaga
 
 
 @method_decorator(
     login_required(login_url='profiles:login', redirect_field_name='next'),
     name='dispatch'
 )
-class DashboardTask(View):
+class DashboardVaga(View):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -24,72 +24,72 @@ class DashboardTask(View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
-    def get_task(self, id=None):
-        task = None
+    def get_vaga(self, id=None):
+        vaga = None
 
         if id is not None:
-            task = Task.objects.filter(
+            vaga = Vaga.objects.filter(
                 is_published=False,
-                author=self.request.user,
+                profile=self.request.user,
                 pk=id,
             ).first()
 
-            if not task:
+            if not vaga:
                 raise Http404()
 
-        return task
+        return vaga
 
-    def render_task(self, form):
+    def render_vaga(self, form):
         return render(
             self.request,
-            'profiles/pages/dashboard_task.html',
+            'profiles/pages/dashboard_vaga.html',
             context={
                 'form': form
             }
         )
 
     def get(self, request, id=None):
-        task = self.get_task(id)
-        form = ProfileTaskForm(instance=task)
-        return self.render_task(form)
+        vaga = self.get_vaga(id)
+        form = ProfileVagaForm(instance=vaga)
+        return self.render_vaga(form)
 
     def post(self, request, id=None):
-        task = self.get_task(id)
-        form = ProfileTaskForm(
+        vaga = self.get_vaga(id)
+        form = ProfileVagaForm(
             data=request.POST or None,
             files=request.FILES or None,
-            instance=task
+            instance=vaga
         )
 
         if form.is_valid():
             # Agora, o form é válido e eu posso tentar salvar
-            task = form.save(commit=False)
+            vaga = form.save(commit=False)
 
-            task.author = request.user
-            task.steps_is_html = False
-            task.is_published = False
+            vaga.profile = request.user
+            vaga.steps_is_html = False
+            vaga.is_published = False
 
-            task.save()
+            vaga.save()
 
-            messages.success(request, 'Sua task foi salva com sucesso!')
+            messages.success(request, 'Sua vaga foi salva com sucesso!')
             return redirect(
                 reverse(
-                    'profiles:dashboard_task_edit', args=(
-                        task.id,
+                    'profiles:dashboard_vaga_edit', args=(
+                        vaga.id,
                     )
                 )
             )
 
-        return self.render_task(form)
+        return self.render_vaga(form)
 
 
 @method_decorator(
     login_required(login_url='profiles:login', redirect_field_name='next'),
     name='dispatch'
 )
-class DashboardTaskDelete(DashboardTask):
+class DashboardVagaDelete(DashboardVaga):
     def post(self, *args, **kwargs):
-        task = self.get_task(self.request.POST.get('id'))
-        task.delete()
+        vaga = self.get_vaga(self.request.POST.get('id'))
+        vaga.delete()
         messages.success(self.request, 'Deleted successfully.')
         return redirect(reverse('profiles:dashboard'))

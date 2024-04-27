@@ -3,12 +3,12 @@ from collections import defaultdict
 from django import forms
 from django.core.exceptions import ValidationError
 
-from vagas.models import Task
+from vagas.models import Vaga
 from utils.django_forms import add_attr
 from utils.strings import is_positive_number
 
 
-class ProfileTaskForm(forms.ModelForm):
+class ProfileVagaForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -17,7 +17,7 @@ class ProfileTaskForm(forms.ModelForm):
         add_attr(self.fields.get('steps'), 'class', 'span-2')
 
     class Meta:
-        model = Task
+        model = Vaga
         fields = 'title', 'description', 'time', \
             'time_unit', 'steps', 'cover'
         widgets = {
