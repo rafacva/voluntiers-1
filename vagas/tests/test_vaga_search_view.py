@@ -31,10 +31,10 @@ class VagaSearchViewTest(VagaTestBase):
         title2 = 'This is vaga two'
 
         vaga1 = self.make_vaga(
-            slug='one', title=title1, author_data={'username': 'one'}
+            slug='one', title=title1, profile_data={'username': 'one'}
         )
         vaga2 = self.make_vaga(
-            slug='two', title=title2, author_data={'username': 'two'}
+            slug='two', title=title2, profile_data={'username': 'two'}
         )
 
         search_url = reverse('vagas:search')

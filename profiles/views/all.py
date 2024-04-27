@@ -87,7 +87,7 @@ def logout_view(request):
 def dashboard(request):
     vagas = Vaga.objects.filter(
         is_published=False,
-        author=request.user
+        profile=request.user
     )
     return render(
         request,

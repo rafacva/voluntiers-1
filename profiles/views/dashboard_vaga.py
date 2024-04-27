@@ -30,7 +30,7 @@ class DashboardVaga(View):
         if id is not None:
             vaga = Vaga.objects.filter(
                 is_published=False,
-                author=self.request.user,
+                profile=self.request.user,
                 pk=id,
             ).first()
 
@@ -65,7 +65,7 @@ class DashboardVaga(View):
             # Agora, o form é válido e eu posso tentar salvar
             vaga = form.save(commit=False)
 
-            vaga.author = request.user
+            vaga.profile = request.user
             vaga.steps_is_html = False
             vaga.is_published = False
 

@@ -7,7 +7,7 @@ class VagaMixin:
     def make_category(self, name='Category'):
         return Category.objects.create(name=name)
 
-    def make_author(
+    def make_profile(
         self,
         first_name='user',
         last_name='name',
@@ -26,7 +26,7 @@ class VagaMixin:
     def make_vaga(
         self,
         category_data=None,
-        author_data=None,
+        profile_data=None,
         title='Vaga Title',
         description='Vaga Description',
         slug='vaga-slug',
@@ -41,12 +41,12 @@ class VagaMixin:
         if category_data is None:
             category_data = {}
 
-        if author_data is None:
-            author_data = {}
+        if profile_data is None:
+            profile_data = {}
 
         return Vaga.objects.create(
             category=self.make_category(**category_data),
-            author=self.make_author(**author_data),
+            profile=self.make_profile(**profile_data),
             title=title,
             description=description,
             slug=slug,
@@ -65,7 +65,7 @@ class VagaMixin:
             kwargs = {
                 'title': f'Vaga Title {i}',
                 'slug': f'r{i}',
-                'author_data': {'username': f'u{i}'}
+                'profile_data': {'username': f'u{i}'}
             }
             vaga = self.make_vaga(**kwargs)
             vagas.append(vaga)

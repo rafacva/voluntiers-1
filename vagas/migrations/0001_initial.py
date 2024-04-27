@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('is_published', models.BooleanField(default=True)),
                 ('cover', models.ImageField(upload_to='vagas/covers/%Y/%m/%d/')),
-                ('author', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL)),
+                ('profile', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL)),
                 ('category', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='vagas.category')),
             ],
         ),

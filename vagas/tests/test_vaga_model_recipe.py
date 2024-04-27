@@ -12,7 +12,7 @@ class VagaModelTest(VagaTestBase):
     def make_vaga_no_defaults(self):
         vaga = Vaga(
             category=self.make_category(name='Test Default Category'),
-            author=self.make_author(username='newuser'),
+            profile=self.make_profile(username='newuser'),
             title='Vaga Title',
             description='Vaga Description',
             slug='vaga-slug-for-no-defaults',
