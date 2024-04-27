@@ -10,25 +10,25 @@
     {% include 'global/partials/messages.html' %}
 
     <div class="profiles-dashboard-container">
-      <h3>Your tasks</h3>
+      <h3>Your vagas</h3>
 
       <ul>
-        {% for task in tasks %}
+        {% for vaga in vagas %}
           <li>
-            <a href="{% url 'profiles:dashboard_task_edit' task.id %}">{{ task.title }}</a> -
+            <a href="{% url 'profiles:dashboard_vaga_edit' vaga.id %}">{{ vaga.title }}</a> -
             <form 
             class="inline-form form-delete" 
-            action="{% url 'profiles:dashboard_task_delete' %}"
+            action="{% url 'profiles:dashboard_vaga_delete' %}"
             method='POST'
             >
               {% csrf_token %}
-              <input type="hidden" name="id" value="{{ task.id }}">
+              <input type="hidden" name="id" value="{{ vaga.id }}">
               <button class="plaintext-button" type="submit">❌</button>
             </form>
           </li>
         {% empty %}
           <li>
-            <p>You do not have tasks, please create one.</p>
+            <p>You do not have vagas, please create one.</p>
           </li>
         {% endfor %}
       </ul>

@@ -1,8 +1,8 @@
 <div class="menu-content">
     <nav class="menu-nav">
-      <a href="{% url 'tasks:home' %}">Home</a>
+      <a href="{% url 'vagas:home' %}">Home</a>
       {% if user.is_authenticated %}
-        <a href="{% url 'profiles:dashboard_task_new' %}">New task</a>
+        <a href="{% url 'profiles:dashboard_vaga_new' %}">New vaga</a>
         <a href="{% url 'profiles:dashboard' %}">Dashboard</a>
         <a href="{% url 'chat:home' %}">Chat</a>
       {% else %}

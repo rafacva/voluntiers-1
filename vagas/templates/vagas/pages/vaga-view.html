@@ -1,0 +1,9 @@
+{% extends 'global/base.html' %}
+
+{% block title %}{{ vaga.title }} | {% endblock title %}
+
+{% block content %}
+<div class="main-content main-content-detail container">
+    {% include 'vagas/partials/vaga.html' %}
+</div>
+{% endblock content %}
