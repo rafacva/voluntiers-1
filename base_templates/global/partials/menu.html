@@ -2,11 +2,11 @@
     <nav class="menu-nav">
       <a href="{% url 'vagas:home' %}">Home</a>
       {% if user.is_authenticated %}
-        <a href="{% url 'profiles:dashboard_vaga_new' %}">New vaga</a>
+        <a href="{% url 'profiles:dashboard_vaga_new' %}">Nova vaga</a>
         <a href="{% url 'profiles:dashboard' %}">Dashboard</a>
       {% else %}
         <a href="{% url 'profiles:login' %}">Login</a>
-        <a href="{% url 'profiles:register' %}">Register</a>
+        <a href="{% url 'profiles:register' %}">Registre-se</a>
     {% endif %}
     </nav>
   </div>

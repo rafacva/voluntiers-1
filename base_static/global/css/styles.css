@@ -55,8 +55,8 @@ html {
 body {
   font-size: 1.6rem;
   font-family: var(--font-primary);
-  background: var(--color-gray-1);
-  color: var(--color-dark-text);
+  background: #ebdef4;
+  color: rgb(123, 8, 120)
 }
 
 h1,
@@ -73,7 +73,7 @@ img {
 }
 
 a {
-  color: var(--color-primary);
+  color: rgb(123, 8, 120);
   text-decoration: none;
 }
 
@@ -84,12 +84,12 @@ a {
 }
 
 .main-header-container {
-  background: #152;
+  background: rgb(123, 8, 120);
 }
 
 .main-logo {
   font-size: 4rem;
-  color: var(--color-white);
+  color: rgb(91, 233, 124);
   text-decoration: none;
   display: flex;
   flex-flow: row nowrap;
@@ -263,18 +263,29 @@ a {
 }
 
 .main-footer {
-  display: flex;
+  display: fixed;
   align-items: center;
   justify-content: space-between;
-  background: var(--color-primary-dark);
+  background: rgb(123, 8, 120);
   color: var(--color-white);
   padding: var(--spacing-gutter-large);
 }
 
 .main-footer a {
-  color: var(--color-white);
+  font-size: 2rem;
+  font-weight: bold;
+  color: rgb(91, 233, 124);
   text-decoration: none;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  margin: 0 auto;
   transition: all 300ms ease-in-out;
+  border: 0.250rem solid;
+  border-color:rgb(183, 241, 196);
+  border-radius: 5px;
 }
 
 .main-footer a:hover {
@@ -526,10 +537,13 @@ a {
 }
 
 .menu-nav {
-  display: flex;
-  flex-flow: column wrap;
+  display: fixed;
+  flex-flow: row;
   font-family: var(--font-headings);
   font-size: 2rem;
+  text-align: right;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .menu-nav a {
