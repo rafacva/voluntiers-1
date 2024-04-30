@@ -8,7 +8,7 @@ class RegisterForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         add_placeholder(self.fields['user_type'], 'ONG ou Voluntário')
-        add_placeholder(self.fields['username'], 'Nome de usuário')
+        add_placeholder(self.fields['username'], 'Nome de Usuário')
         add_placeholder(self.fields['email'], 'E-mail')
         add_placeholder(self.fields['first_name'], 'Ex.: John')
         add_placeholder(self.fields['last_name'], 'Ex.: Doe')
@@ -25,7 +25,7 @@ class RegisterForm(forms.ModelForm):
     label='Tipo de Usuário'
     )
     username = forms.CharField(
-        label='Nome de usuário',
+        label='Usuário',
         help_text=(
             'Nome de usuário deve conter letras, números ou um desses: @.+-_. '
             'O nome de usuário deve conter de 4 a 150 caracteres.'
@@ -38,12 +38,12 @@ class RegisterForm(forms.ModelForm):
         min_length=4, max_length=150,
     )
     first_name = forms.CharField(
-        error_messages={'required': 'Write your first name'},
+        error_messages={'required': 'Escreva seu nome'},
         label='Nome'
     )
     last_name = forms.CharField(
-        error_messages={'required': 'Write your last name'},
-        label='Last name'
+        error_messages={'required': 'Escreva seu sobrenome'},
+        label='Sobrenome'
     )
     email = forms.EmailField(
         error_messages={'required': 'E-mail é necessário'},
@@ -101,7 +101,7 @@ class RegisterForm(forms.ModelForm):
 
         if password != password2:
             password_confirmation_error = ValidationError(
-                'Password and password2 must be equal',
+                'A senha e a confirmação de senha devem ser iguais.',
                 code='invalid'
             )
             raise ValidationError({
