@@ -89,7 +89,7 @@ a {
 
 .main-logo {
   font-size: 4rem;
-  color: rgb(91, 233, 124);
+  color: rgb(100, 255, 136);
   text-decoration: none;
   display: flex;
   flex-flow: row nowrap;
@@ -274,7 +274,7 @@ a {
 .main-footer a {
   font-size: 2rem;
   font-weight: bold;
-  color: rgb(91, 233, 124);
+  color: rgb(100, 255, 136);
   text-decoration: none;
   display: flex;
   flex-flow: row nowrap;
@@ -283,9 +283,6 @@ a {
   width: fit-content;
   margin: 0 auto;
   transition: all 300ms ease-in-out;
-  border: 0.250rem solid;
-  border-color:rgb(183, 241, 196);
-  border-radius: 5px;
 }
 
 .main-footer a:hover {
