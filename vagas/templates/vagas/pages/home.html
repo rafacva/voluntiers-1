@@ -1,4 +1,5 @@
 {% extends 'global/base.html' %}
+{% load i18n %}
 
 {% block title %}Home | {% endblock title %}
 
@@ -11,7 +12,7 @@
     {% include 'vagas/partials/vaga.html' %}
 {% empty %}
     <div class="center m-y">
-        <h1>Novas vagas em breve!</h1>
+        <h1>{% translate "New oportunities soon!" %}</h1>
     </div>
 {% endfor %}
 </div>

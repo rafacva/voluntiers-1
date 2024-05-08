@@ -262,13 +262,28 @@ a {
   padding: var(--spacing-gutter-medium);
 }
 
-.main-footer {
+.main-content-container {
+      min-height: 64vh;
+}
+
+/*.main-footer {
   display: fixed;
   align-items: center;
   justify-content: space-between;
   background: rgb(123, 8, 120);
   color: var(--color-white);
   padding: var(--spacing-gutter-large);
+}*/
+
+.main-footer {
+    display: flex;
+    background: rgb(123, 8, 120);
+    color: var(--color-white);
+    padding: var(--spacing-gutter-large);
+    text-align: center;
+    width: 100%;
+    margin-top: auto;
+    justify-content: center;
 }
 
 .main-footer a {
