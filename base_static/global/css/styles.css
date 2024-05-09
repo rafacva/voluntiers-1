@@ -50,13 +50,15 @@
 
 html {
   font-size: 62.5%;
+  height: 100%;
 }
 
 body {
   font-size: 1.6rem;
   font-family: var(--font-primary);
   background: #ebdef4;
-  color: rgb(123, 8, 120)
+  color: rgb(123, 8, 120);
+  height: 100%;
 }
 
 h1,
@@ -263,7 +265,7 @@ a {
 }
 
 .main-content-container {
-      min-height: 64vh;
+  height: calc(100% - 243px);
 }
 
 /*.main-footer {
